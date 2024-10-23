@@ -25,6 +25,7 @@ def explore_data(df):
 
     print("\nUnique values per column:")
     print(df.nunique())  # prints the number of unique values 
+   
     
 # Cleans data file by checking if values is missing 
 def clean_data(df):
@@ -46,9 +47,15 @@ def manipulate_data(df):
 
 # Visual represtation
 def visualize_data(df):
+    action = (df['GameGenre']=='Action').sum()  
+    femaleAction = (df['Gender']== 'Female').sum() & (df['GameGenre']=='Action').sum()
+    maleAction =  (df['Gender']== 'Male').sum() & (df['GameGenre']=='Action').sum()
+    print(action)
+    print(femaleAction)
+    print(maleAction)
     # Distribution of Play Time
     plt.figure(figsize=(10, 6))
-    sns.barplot(x='Gender' ,y='AchievementsUnlocked', data=df)
+    sns.barplot(x='Gender' ,y=action, data=df)
     plt.title('Difference in play time M & F')
     plt.xlabel('Genders')
     plt.ylabel('PlayTime (hours)')
@@ -75,7 +82,7 @@ if __name__ == "__main__":
 
     # Load Data
     df = load_data(file_path)
-    
+   
     # Exploratory Data Analysis (EDA)
     if df is not None:
         explore_data(df)
@@ -91,7 +98,5 @@ if __name__ == "__main__":
 
         # Save cleaned and manipulated data
         save_cleaned_data(df_manipulated, output_file)
-        
-# # Count occurrences of the value "Python" in column "Language"
-# python_count = df['Action'].value_counts().get('Python', 0)
-# print(python_count)
+
+
