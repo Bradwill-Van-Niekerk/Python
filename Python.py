@@ -49,10 +49,10 @@ def visualize_data(df):
     # Distribution of Play Time
     plt.figure(figsize=(10, 6))
     sns.barplot(x='Gender' ,y='AchievementsUnlocked', data=df)
-    plt.title('Distribution of PlayTimeHours')
-    plt.xlabel('PlayTime (hours)')
-    plt.ylabel('0')
-    plt.show()
+    plt.title('Difference in play time M & F')
+    plt.xlabel('Genders')
+    plt.ylabel('PlayTime (hours)')
+
 
     # Sessions Per Week vs Avg Session Duration
     plt.figure(figsize=(10 ,6))
@@ -66,6 +66,7 @@ def visualize_data(df):
 def save_cleaned_data(df, output_file):
     df.to_csv(output_file, index=False)
     print(f"Cleaned data saved to {output_file}")
+
 
 if __name__ == "__main__":
     # File path
@@ -90,3 +91,7 @@ if __name__ == "__main__":
 
         # Save cleaned and manipulated data
         save_cleaned_data(df_manipulated, output_file)
+        
+# # Count occurrences of the value "Python" in column "Language"
+# python_count = df['Action'].value_counts().get('Python', 0)
+# print(python_count)
